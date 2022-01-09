@@ -46,3 +46,7 @@
   text-decoration: none;
   box-shadow: none !important;
 }
+
+.image__hover__content p {
+  margin: 0;
+}

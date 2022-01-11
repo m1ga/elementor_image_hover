@@ -4,7 +4,7 @@
 * Plugin Name: Elementor Image Hover
 * Plugin URI: https://www.migaweb.de/
 * Description: Elementor Image Hover
-* Version: 1.0
+* Version: 1.1
 * Author: Michael Gangolf
 * Author URI: https://www.migaweb.de/
 **/

@@ -82,14 +82,84 @@ class Elementor_Widget_Image_Hover extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'style_section',
+            'image_section',
             [
-                'label' => __('Style', 'elementor_image_hover'),
+                'label' => __('Image', 'elementor_image_hover'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        
+        $this->add_control(
+            'width',
+            [
+                        'label' => esc_html__('Width', 'elementor_image_hover'),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => [ 'px', '%' ],
+                        'range' => [
+                            'px' => [
+                                'min' => 0,
+                                'max' => 1000,
+                                'step' => 5,
+                            ],
+                            '%' => [
+                                'min' => 0,
+                                'max' => 100,
+                            ],
+                        ],
+                        'default' => [
+                            'unit' => '%',
+                            'size' => "",
+                        ],
+                        'selectors' => [
+                            '{{WRAPPER}} .image__hover img' => 'width: {{SIZE}}{{UNIT}};',
+                        ],
+                    ]
+        );
+
+        $this->add_control(
+            'height',
+            [
+                        'label' => esc_html__('Height', 'elementor_image_hover'),
+                        'type' => \Elementor\Controls_Manager::SLIDER,
+                        'size_units' => [ 'px', '%' ],
+                        'range' => [
+                            'px' => [
+                                'min' => 0,
+                                'max' => 1000,
+                                'step' => 5,
+                            ],
+                            '%' => [
+                                'min' => 0,
+                                'max' => 100,
+                            ],
+                        ],
+                        'default' => [
+                            'unit' => '%',
+                            'size' => "",
+                        ],
+                        'selectors' => [
+                            '{{WRAPPER}} .image__hover img' => 'height: {{SIZE}}{{UNIT}};',
+                        ],
+                    ]
+        );
+
+        $this->add_control(
+            'hover_animation',
+            [
+                'label' => esc_html__('Hover Animation', 'elementor_image_hover'),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+        $this->end_controls_section();
+
+
+        $this->start_controls_section(
+            'fonts_section',
+            [
+                'label' => __('Fonts', 'elementor_image_hover'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -120,15 +190,19 @@ class Elementor_Widget_Image_Hover extends \Elementor\Widget_Base
         $button_text = $settings["button_text"];
         $button_link = $settings["button_link"];
         $editorClass = ($isEditor)?" isEditor " : "";
-        ?>
+        $animationClass = "";
+
+        if ($settings['hover_animation']) {
+            $animationClass .= ' elementor-animation-' . $settings['hover_animation'];
+        } ?>
 
 
-        <div class="image__hover">
-          <div class="image__hover__content <?=$editorClass;?>">
+        <div class="image__hover <?=$animationClass; ?>">
+          <div class="image__hover__content <?=$editorClass; ?>">
             <p class="image__hover__title" ><?=$title; ?></p>
             <p class="image__hover__text"><?=$subtitle; ?></p>
           </div>
-          <img src="<?=$settings['image']['url']; ?>">
+          <img src="<?=$settings['image']['url']; ?>" >
           <a href="<?=$button_link["url"]; ?>"></a>
         </div>
 

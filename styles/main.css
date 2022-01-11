@@ -1,5 +1,6 @@
 .image__hover {
   position: relative;
+  display: inline-block;
 }
 
 .image__hover img {
